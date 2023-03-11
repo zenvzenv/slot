@@ -10,9 +10,9 @@
 
 `slot-agent` 所依赖的一些第三方工具包，包括 `disruptor`, `logback`, `asm` 工具，主要是为了防止 agent 依赖的工具包与业务系统的工具
 包有冲突，从而 自己重新打包。具体参见 `slot-repackage` 的 
-[README.md]()
+[README.md](https://github.com/zenvzenv/slot/blob/main/slot-agent/README.md)
 
 ## slot-agent
 
 `slot-agent` 是业务无痕埋点的核心，用户可以不修改原有的业务代码对业务代码进行埋点监控，具体参见 `slot-agent` 的 
-[README.md]()
+[README.md](https://github.com/zenvzenv/slot/blob/main/slot-repackage/README.md)
