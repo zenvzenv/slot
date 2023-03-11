@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--请根据实际情况来确定日志存放位置，默认路径为: /tmp/slot/logs -->
+    <property name="log_path" value="/tmp/slot/logs"/>
+
+    <appender name="SLOT_LOG_FILE" class="zenv.slot.internal.ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%date [%level] %logger{60} [%file : %line] %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="zenv.slot.internal.ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 添加.gz 历史日志会启用压缩 大大缩小日志文件所占空间 -->
+            <fileNamePattern>${log_path}/slot.${serviceName}.%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>1</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="SLOT_CONSOLE" class="zenv.slot.internal.ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%date [%level] %logger{60} [%file : %line] %msg%n</pattern>
+            <!--windows运行环境下控制台输出需使用GBK编码,若为linux运行环境则需要注释掉-->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="SLOT_CONSOLE"/>
+        <appender-ref ref="SLOT_LOG_FILE"/>
+    </root>
+</configuration>
